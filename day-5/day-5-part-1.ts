@@ -32,14 +32,9 @@ function findLowestLocation(seed: number, maps: MapRange[][]) {
             const { source, destination, length } = range;
             const sourceStart = source;
             const sourceEnd = source + length - 1;
-            // console.log(`sourceStart: ${sourceStart}`)
-            // console.log(`sourceEnd: ${sourceEnd}`)
-            // console.log(`currentKey: ${currentKey}`)
             if (currentKey >= sourceStart && currentKey <= sourceEnd) {
                 const diff = destination - source;
-                // console.log(`diff: ${diff}`)
                 currentKey = currentKey + diff;
-                // console.log(`setting currentKey to ${currentKey}`)
                 findMatch = true;
                 break;
             }
@@ -92,15 +87,11 @@ function resolveMaps(lines: string[]) {
 function solve() {
     const lines = readFile('data.txt');
     const seeds = parseSeeds(lines[0]);
-    console.log(seeds);
     const maps = resolveMaps(lines.slice(2));
-    console.log(maps);
     let lowestLocation = null;
 
     for (const seed of seeds) {
-        console.log(`seed: ${seed}`);
         const lowest = findLowestLocation(seed, maps);
-        console.log(lowest);
         if (lowestLocation > lowest || lowestLocation === null) {
             lowestLocation = lowest;
         }
